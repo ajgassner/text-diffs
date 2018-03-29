@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [clojure.java.io :as io])
   (:require [clojure.string :as str])
-  (:import (lib.google diff_match_patch)
+  (:import (name.fraser.neil.plaintext diff_match_patch)
            (com.github.difflib UnifiedDiffUtils DiffUtils)))
 
 (defn print-seq [lines]
@@ -14,7 +14,7 @@
   (print-seq (UnifiedDiffUtils/generateUnifiedDiff "original" "modified" (str/split str1 #"\n") (DiffUtils/diff str1 str2) 10)))
 
 (defn dmp-diff [str1 str2, html?]
-  (println "=== DMP HTML diff ===")
+  (println "=== DMP diff ===")
   (let [dmp (new diff_match_patch)
         diff (.diff_main dmp str1 str2)]
     (.diff_cleanupSemantic dmp diff)
